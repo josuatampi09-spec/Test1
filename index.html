@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Tugas PPLG - Proyek 3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header-flex">
+            <div class="header-text">
+                <h1><i class="fas fa-tasks"></i> Portal Pembelajaran & Tugas PPLG</h1>
+                <p>SMKS Kristen 2 Tomohon - Unggah data kelas Anda untuk mengakses modul tugas.</p>
+            </div>
+            <button class="btn-teacher" onclick="tampilLoginGuru()"><i class="fas fa-user-shield"></i> Login Guru</button>
+        </header>
+
+        <div id="step1" class="card fade-in">
+            <h2><i class="fas fa-file-upload"></i> Langkah 1: Autentikasi Data Kelas</h2>
+            <p>Silakan unggah file <b>Data_Siswa_PPLG.csv</b> dari proyek sebelumnya.</p>
+            <input type="file" id="csvFileInput" accept=".csv" class="file-input">
+        </div>
+
+        <div id="step2" class="card fade-in hidden">
+            <h2><i class="fas fa-user-lock"></i> Langkah 2: Verifikasi Identitas</h2>
+            <p>Data kelas berhasil dimuat! Silakan <b>ketik nama lengkap Anda</b> sesuai data di sistem untuk masuk.</p>
+            <div class="input-group">
+                <input type="text" id="userNameInput" placeholder="Ketik nama lengkap Anda di sini..." autocomplete="off">
+            </div>
+            <button id="btnLogin" class="btn-primary" onclick="masukKeTugas()">Masuk ke Ruang Tugas</button>
+        </div>
+
+        <div id="step3" class="card fade-in hidden">
+            <div class="task-header">
+                <h2 id="welcomeMessage">Selamat Datang, Siswa!</h2>
+                <span class="badge" id="userNisn">NISN: -</span>
+            </div>
+            
+            <div class="task-instruction">
+                <h3><i class="fas fa-clipboard-list"></i> Tugas Hari Ini: Merancang Login Form</h3>
+                <p>Buatlah catatan atau tuliskan kode HTML/CSS mengenai <b>Langkah-Langkah Membuat Form Login</b> yang aman dan menarik.</p>
+            </div>
+
+            <form id="taskForm">
+                <div class="input-group">
+                    <label for="taskContent">Tuliskan Langkah-langkah atau Kode Anda di sini:</label>
+                    <textarea id="taskContent" rows="8" required placeholder="1. Buat tag <form>... &#10;2. Tambahkan input username... &#10;3. Tambahkan input password..."></textarea>
+                </div>
+                <button type="submit" class="btn-success"><i class="fas fa-paper-plane"></i> Kumpulkan Tugas</button>
+            </form>
+        </div>
+
+        <div id="teacherLogin" class="card fade-in hidden">
+            <h2><i class="fas fa-user-shield"></i> Akses Khusus Guru</h2>
+            <p>Masukkan kredensial Anda untuk melihat tugas siswa.</p>
+            <div class="input-group">
+                <input type="text" id="guruUsername" placeholder="Username (ketik: guru)">
+            </div>
+            <div class="input-group">
+                <input type="password" id="guruPassword" placeholder="Password (ketik: admin123)">
+            </div>
+            <button class="btn-primary" onclick="validasiGuru()">Masuk Dashboard</button>
+            <button class="btn-cancel" onclick="kembaliKeSiswa()" style="margin-top: 10px;">Kembali</button>
+        </div>
+
+        <div id="teacherDashboard" class="card fade-in hidden">
+            <h2><i class="fas fa-chalkboard-teacher"></i> Dashboard Evaluasi Tugas</h2>
+            <p>Daftar tugas yang telah dikumpulkan siswa secara real-time dari Google Sheets.</p>
+            
+            <div class="table-responsive" style="margin-top: 20px;">
+                <table id="taskTable">
+                    <thead>
+                        <tr>
+                            <th>Waktu Kumpul</th>
+                            <th>NISN</th>
+                            <th>Nama Siswa</th>
+                            <th>Isi Tugas (Kode Login)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody">
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn-cancel" onclick="kembaliKeSiswa()" style="margin-top: 20px;">Keluar Dashboard</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
